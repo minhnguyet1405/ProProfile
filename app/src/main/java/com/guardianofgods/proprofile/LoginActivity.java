@@ -9,10 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
 public class LoginActivity extends AppCompatActivity {
     private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
 
     ImageView back;
+    TextInputLayout til_Name,til_pass;
     EditText edtName, edtPassword;
     Button btnLogin;
 
