@@ -3,14 +3,13 @@ package com.example.proprofile;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-public class loginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
 
     ImageView back;
@@ -32,7 +31,7 @@ public class loginActivity extends AppCompatActivity {
                 String email=edtName.getText().toString();
                 String password=edtPassword.getText().toString();
 
-                    Intent intent=new Intent(loginActivity.this,HomeActivity.class);
+                    Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
                     intent.putExtra("EMAIL",email);
                     intent.putExtra("PASS",password);
                     startActivity(intent);
