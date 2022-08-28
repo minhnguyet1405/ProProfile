@@ -1,4 +1,4 @@
-package com.example.proprofile;
+package com.guardianofgods.proprofile;
 
 import org.junit.Test;
 

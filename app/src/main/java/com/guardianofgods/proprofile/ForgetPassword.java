@@ -1,4 +1,4 @@
-package com.example.proprofile;
+package com.guardianofgods.proprofile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
