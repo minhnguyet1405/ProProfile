@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         navigationView=findViewById(R.id.bottom_navigation);
         viewPager2=findViewById(R.id.viewPager);
         setupViewPager();
-        
+
 //        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 //            @Override
 //            public boolean onNavigationItemSelected(@NonNull MenuItem item) {

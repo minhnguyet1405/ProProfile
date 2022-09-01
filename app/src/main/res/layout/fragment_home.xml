@@ -96,7 +96,7 @@
             android:layout_marginBottom="6dp"
             android:text="0972209496"
             android:textColor="@color/text_color"
-            android:textStyle="bold"
+
             app:layout_constraintBottom_toBottomOf="@id/imageView5"
             app:layout_constraintStart_toEndOf="@+id/imageView5"
             app:layout_constraintTop_toTopOf="@id/imageView5" />
@@ -146,7 +146,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageView7"
             app:layout_constraintBottom_toBottomOf="@+id/imageView7"
             android:text="nguyetminh4986@gmail.com"
-            android:textStyle="bold"
+
             android:textColor="@color/text_color"
             android:layout_marginStart="20dp"/>
         <ImageView
@@ -189,7 +189,7 @@
             <ImageView
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:src="@drawable/ic_facebook"
+                android:src="@drawable/ic_facebook_home"
                 android:layout_gravity="center"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -269,7 +269,7 @@
         android:layout_below="@+id/view3"
         android:layout_marginTop="30dp"
         app:tabIndicatorAnimationMode="elastic"
-        app:tabIndicator="@color/custom_ic_viewpager_home"
+        app:tabIndicator="@drawable/custom_background_viewpager_home"
         app:tabIndicatorGravity="stretch"
         app:tabGravity="fill"
         app:tabMode="fixed"

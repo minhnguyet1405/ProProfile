@@ -43,7 +43,9 @@ public class HomeFragment extends Fragment {
                     case 0:
 
                         tab.setIcon(R.drawable.ic_heart);
+                        //đổi màu background tablayout
                         tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#F5781D"));
+
 
                         break;
 
@@ -51,6 +53,7 @@ public class HomeFragment extends Fragment {
 
                         tab.setIcon(R.drawable.ic_wallet);
                         tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#F5781D"));
+
                         break;
                 }
             }
