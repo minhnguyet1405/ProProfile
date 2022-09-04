@@ -1,6 +1,9 @@
 package com.guardianofgods.proprofile;
 
 import android.Manifest;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -14,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
@@ -29,7 +33,8 @@ public class HomeFragment extends Fragment {
     TabLayout tabLayout;
     ViewPager2 viewPager2;
     ViewPagerAdapterHome viewPagerAdapterHome;
-    ImageView imageView;
+    ImageView imageView, copy_phone,copy_email;
+    TextView tvPhone,tvEmail;
 
 
 
@@ -41,8 +46,40 @@ public class HomeFragment extends Fragment {
 
         tabLayout=view.findViewById(R.id.tablayout);
         viewPager2=view.findViewById(R.id.view_pager_home);
-
         imageView=view.findViewById(R.id.Image_avatar);
+        copy_phone=view.findViewById(R.id.copy_phone);
+        copy_email=view.findViewById(R.id.copy_email);
+        tvPhone=view.findViewById(R.id.text_phone);
+        tvEmail=view.findViewById(R.id.text_email);
+
+        copy_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClipboardManager clipboardManager= (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clipData=ClipData.newPlainText("Text",tvPhone.getText().toString());
+                clipboardManager.setPrimaryClip(clipData);
+                clipData.getDescription();
+                Toast.makeText(getActivity(),"Copied",Toast.LENGTH_SHORT).show();
+            }
+        });
+        copy_email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClipboardManager clipboardManager= (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clipData=ClipData.newPlainText("Text",tvEmail.getText().toString());
+                clipboardManager.setPrimaryClip(clipData);
+                clipData.getDescription();
+                Toast.makeText(getActivity(),"Copied",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
+
+
+
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,5 +149,7 @@ public class HomeFragment extends Fragment {
     private void openImagePicker() {
 
     }
+
+
 
 }
