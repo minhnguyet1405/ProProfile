@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Đăng nhập"
-        android:textColor="@color/text_color"
+        android:textColor="@color/color_main"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/back"
@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:helperText="Require"
-        app:helperTextTextColor="@color/text_color"
+        app:helperTextTextColor="@color/color_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
 
         app:helperText="Require"
-        app:helperTextTextColor="@color/text_color"
+        app:helperTextTextColor="@color/color_main"
         app:passwordToggleEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

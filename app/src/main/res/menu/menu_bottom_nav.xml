@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_home"
+        android:title="@string/action_home"
+        android:icon="@drawable/ic_home"/>
+
+    <item android:id="@+id/action_notification"
+        android:title="@string/action_notification"
+        android:icon="@drawable/ic_notification"/>
+
+    <item android:id="@+id/action_create"
+        android:title="@string/action_create"
+        android:icon="@drawable/ic_create"/>
+
+    <item android:id="@+id/action_account"
+        android:title="@string/action_account"
+        android:icon="@drawable/ic_account"/>
+
+    <item android:id="@+id/action_setting"
+        android:title="@string/action_setting"
+        android:icon="@drawable/ic_setting"/>
+</menu>
