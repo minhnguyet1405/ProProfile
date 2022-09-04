@@ -1,5 +1,6 @@
 package com.guardianofgods.proprofile;
 
+import android.Manifest;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -12,9 +13,15 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.normal.TedPermission;
+
+import java.util.List;
 
 
 public class HomeFragment extends Fragment {
@@ -22,6 +29,7 @@ public class HomeFragment extends Fragment {
     TabLayout tabLayout;
     ViewPager2 viewPager2;
     ViewPagerAdapterHome viewPagerAdapterHome;
+    ImageView imageView;
 
 
 
@@ -33,6 +41,17 @@ public class HomeFragment extends Fragment {
 
         tabLayout=view.findViewById(R.id.tablayout);
         viewPager2=view.findViewById(R.id.view_pager_home);
+
+        imageView=view.findViewById(R.id.Image_avatar);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                requestPermissions();
+            }
+        });
+
+
+
         viewPagerAdapterHome=new ViewPagerAdapterHome(this);
         viewPager2.setAdapter(viewPagerAdapterHome);
 
@@ -66,6 +85,32 @@ public class HomeFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void requestPermissions() {
+        PermissionListener permissionlistener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                openImagePicker();
+
+            }
+
+            @Override
+            public void onPermissionDenied(List<String> deniedPermissions) {
+                Toast.makeText(getActivity(), "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+
+        };
+        TedPermission.create()
+                .setPermissionListener(permissionlistener)
+                .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
+                .setPermissions(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
+                .check();
+    }
+
+    private void openImagePicker() {
+
     }
 
 }
