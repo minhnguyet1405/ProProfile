@@ -68,19 +68,20 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void Login(String email, String password, String emailFireBase, String passwordFireBase){
-        if(emailFireBase.equals(email) && passwordFireBase.equals(password)){
-            HomeFragment homeFragment=new HomeFragment();
-            homeFragment.getClass();
-            Intent intent=new Intent(LoginActivity.this,MainActivity.class);
-                    intent.putExtra("EMAIL",email);
-                    intent.putExtra("PASS",password);
-                    startActivity(intent);
-                    finish();
-            Toast.makeText(LoginActivity.this,"success",Toast.LENGTH_SHORT).show();
-
-        }else {
-            Toast.makeText(LoginActivity.this,"error",Toast.LENGTH_SHORT).show();
-
-        }
+        Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+        intent.putExtra("EMAIL",email);
+        intent.putExtra("PASS",password);
+        startActivity(intent);
+        finish();
+        return;
+//        if(emailFireBase.equals(email) && passwordFireBase.equals(password)){
+//
+//
+//            Toast.makeText(LoginActivity.this,"success",Toast.LENGTH_SHORT).show();
+//
+//        }else {
+//            Toast.makeText(LoginActivity.this,"error",Toast.LENGTH_SHORT).show();
+//
+//        }
     }
 }
