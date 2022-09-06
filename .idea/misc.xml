@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/App/ProProfile/app/src/main/res/drawable/backgroud_edt.xml" value="0.156" />
         <entry key="..\:/App/ProProfile/app/src/main/res/drawable/boder_button.xml" value="0.156" />
+        <entry key="..\:/App/ProProfile/app/src/main/res/drawable/custom_background_item_pinview.xml" value="0.183" />
         <entry key="..\:/App/ProProfile/app/src/main/res/drawable/custom_background_top_home.xml" value="0.171" />
         <entry key="..\:/App/ProProfile/app/src/main/res/drawable/custom_background_viewpager_home.xml" value="0.171" />
         <entry key="..\:/App/ProProfile/app/src/main/res/drawable/custom_boder_bottom.xml" value="0.171" />
@@ -13,6 +14,7 @@
         <entry key="..\:/App/ProProfile/app/src/main/res/layout/activity_forget_password.xml" value="0.264" />
         <entry key="..\:/App/ProProfile/app/src/main/res/layout/activity_home.xml" value="0.264" />
         <entry key="..\:/App/ProProfile/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/App/ProProfile/app/src/main/res/layout/activity_login_pin_code.xml" value="0.264" />
         <entry key="..\:/App/ProProfile/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/App/ProProfile/app/src/main/res/layout/activity_register.xml" value="0.264" />
         <entry key="..\:/App/ProProfile/app/src/main/res/layout/fragment_account.xml" value="0.10989583333333333" />

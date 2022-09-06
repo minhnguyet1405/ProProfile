@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginPinCode">
+
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="107dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo_login"/>
+    <TextView
+        android:id="@+id/name_pincode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xin chào,Minh Nguyệt"
+        android:layout_below="@+id/image1"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:textColor="@color/text_color"/>
+    <com.chaos.view.PinView
+        android:id="@+id/pinview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name_pincode"
+        style="@style/PinWidget.PinView"
+        android:layout_marginTop="30dp"
+        android:layout_centerInParent="true"
+        android:inputType="text"
+        android:cursorVisible="true"
+        app:cursorWidth="1dp"
+        app:cursorColor="@color/color_main"
+        app:hideLineWhenFilled="true"
+        app:lineColor="@color/color_main"
+        app:itemCount="6"
+        app:itemRadius="5dp"
+        app:itemSpacing="18dp"
+        app:itemHeight="60dp"
+        app:lineWidth="1dp"
+        app:viewType="rectangle"
+
+        />
+    <Button
+        android:id="@+id/btn_login_pincode"
+        android:layout_width="176dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/boder_button"
+        android:text="Đăng nhập"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:layout_below="@+id/pinview"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_login_pincode"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="22dp"
+        android:text="Quên mã pin?"
+        android:textColor="@color/color_main"
+        android:textSize="16dp"/>
+
+
+</RelativeLayout>

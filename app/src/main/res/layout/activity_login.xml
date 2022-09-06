@@ -74,7 +74,7 @@
             android:layout_height="50dp"
             android:background="@drawable/backgroud_edt"
             android:hint="Password"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
             android:lines="1"
             android:paddingLeft="20dp" />
 
