@@ -42,11 +42,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <EditText
-            android:id="@+id/email_login"
+            android:id="@+id/phone_login"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/backgroud_edt"
-            android:hint="Email"
+            android:hint="Phone"
             android:lines="1"
             android:paddingLeft="20dp"
             />

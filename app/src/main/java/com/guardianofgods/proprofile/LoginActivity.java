@@ -25,37 +25,36 @@ public class LoginActivity extends AppCompatActivity {
 
     ImageView back;
     TextInputLayout til_Name,til_pass;
-    EditText edtName, edtPassword;
+    EditText edtPhone, edtPassword;
     Button btnLogin;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-
-    String email;
+    String phone;
     String password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         back=findViewById(R.id.back);
-        edtName=findViewById(R.id.email_login);
+        edtPhone=findViewById(R.id.phone_login);
         edtPassword=findViewById(R.id.password_login);
         btnLogin=findViewById(R.id.btn_login);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                email=edtName.getText().toString();
+                phone=edtPhone.getText().toString();
                 password=edtPassword.getText().toString();
 
                 firebaseDatabase = FirebaseDatabase.getInstance();
                 databaseReference=firebaseDatabase.getReference("Users");
-                databaseReference.child("0123456789").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                databaseReference.child(phone).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
                         if (task.isSuccessful()) {
 
-                            Login(email,password,task.getResult().child("email").getValue().toString(),task.getResult().child("password").getValue().toString());
+                            Login(phone,password,task.getResult().child("phone").getValue().toString(), task.getResult().child("password").getValue().toString());
                         }
                         else {
                             Toast.makeText(LoginActivity.this,String.valueOf(task.getResult().getValue()),Toast.LENGTH_SHORT).show();
@@ -67,21 +66,20 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void Login(String email, String password, String emailFireBase, String passwordFireBase){
-        Intent intent=new Intent(LoginActivity.this,MainActivity.class);
-        intent.putExtra("EMAIL",email);
-        intent.putExtra("PASS",password);
-        startActivity(intent);
-        finish();
-        return;
-//        if(emailFireBase.equals(email) && passwordFireBase.equals(password)){
-//
-//
-//            Toast.makeText(LoginActivity.this,"success",Toast.LENGTH_SHORT).show();
-//
-//        }else {
-//            Toast.makeText(LoginActivity.this,"error",Toast.LENGTH_SHORT).show();
-//
-//        }
+    private void Login(String phone, String password, String phoneFireBase, String passwordFireBase){
+        Toast.makeText(LoginActivity.this,phoneFireBase,Toast.LENGTH_SHORT).show();
+        Toast.makeText(LoginActivity.this,phone,Toast.LENGTH_SHORT).show();
+        if(phoneFireBase.equals(phone) && passwordFireBase.equals(password)){
+            Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+            intent.putExtra("PHONE",phone);
+            intent.putExtra("PASS",password);
+            startActivity(intent);
+            finish();
+            Toast.makeText(LoginActivity.this,"success",Toast.LENGTH_SHORT).show();
+
+        }else {
+            Toast.makeText(LoginActivity.this,"error",Toast.LENGTH_SHORT).show();
+
+        }
     }
 }
