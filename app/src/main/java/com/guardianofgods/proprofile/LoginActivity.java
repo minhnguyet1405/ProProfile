@@ -3,7 +3,10 @@ package com.guardianofgods.proprofile;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class LoginActivity extends AppCompatActivity {
     private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
 
-    ImageView back;
+    ImageView back,ic_facebook,ic_instagram;
     TextInputLayout til_Name,til_pass;
     EditText edtPhone, edtPassword;
     Button btnLogin;
@@ -40,6 +43,8 @@ public class LoginActivity extends AppCompatActivity {
         edtPhone=findViewById(R.id.phone_login);
         edtPassword=findViewById(R.id.password_login);
         btnLogin=findViewById(R.id.btn_login);
+        ic_facebook=findViewById(R.id.icon_facebook);
+        ic_instagram=findViewById(R.id.icon_instagram);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +69,21 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         });
+
+
+        ic_facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openFacebookIntent("100014907154914");
+            }
+        });
+
+        ic_instagram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openInstagramIntent();
+            }
+        });
     }
 
     private void Login(String phone, String password, String phoneFireBase, String passwordFireBase){
@@ -82,4 +102,29 @@ public class LoginActivity extends AppCompatActivity {
 
         }
     }
+
+    private void openFacebookIntent(String id){
+        try {
+            Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse("fb://profile/"+id));
+            startActivity(intent);
+        } catch (Exception e) {
+            Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/" +id));
+            startActivity(intent);
+        }
+    }
+
+    private void openInstagramIntent(){
+        Uri uri = Uri.parse("https://www.instagram.com/mnguyet.1405/");
+        Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+
+        likeIng.setPackage("com.instagram.android");
+
+        try {
+            startActivity(likeIng);
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://www.instagram.com/mnguyet.1405/")));
+        }
+    }
+
 }

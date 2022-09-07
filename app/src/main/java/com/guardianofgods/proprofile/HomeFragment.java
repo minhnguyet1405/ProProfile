@@ -2,6 +2,7 @@ package com.guardianofgods.proprofile;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -49,7 +50,7 @@ public class HomeFragment extends Fragment {
     TabLayout tabLayout;
     ViewPager2 viewPager2;
     ViewPagerAdapterHome viewPagerAdapterHome;
-    ImageView imageView, copy_phone,copy_email;
+    ImageView imageView, copy_phone,copy_email, i_facebook,i_youtube,i_instagram;
     TextView tvPhone,tvEmail;
 
     Uri imageUri;
@@ -72,6 +73,9 @@ public class HomeFragment extends Fragment {
         copy_email=view.findViewById(R.id.copy_email);
         tvPhone=view.findViewById(R.id.text_phone);
         tvEmail=view.findViewById(R.id.text_email);
+        i_facebook=view.findViewById(R.id.facebook);
+        i_youtube=view.findViewById(R.id.youtube);
+        i_instagram=view.findViewById(R.id.instagram);
 
         copy_phone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,6 +160,25 @@ public class HomeFragment extends Fragment {
 //            }
 //        });
 
+        i_facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openFacebookIntent("100014907154914");
+            }
+        });
+
+        i_instagram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openInstagramIntent();
+            }
+        });
+        i_youtube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=kHy6ePOn44s")));
+            }
+        });
         return view;
     }
 
@@ -226,5 +249,30 @@ public class HomeFragment extends Fragment {
                         Toast.makeText(getActivity(),"Failed to upload",Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+
+    private void openFacebookIntent(String id){
+        try {
+            Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse("fb://profile/"+id));
+            startActivity(intent);
+        } catch (Exception e) {
+            Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/" +id));
+            startActivity(intent);
+        }
+    }
+
+    private void openInstagramIntent(){
+        Uri uri = Uri.parse("https://www.instagram.com/mnguyet.1405/");
+        Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+
+        likeIng.setPackage("com.instagram.android");
+
+        try {
+            startActivity(likeIng);
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://www.instagram.com/mnguyet.1405/")));
+        }
     }
 }

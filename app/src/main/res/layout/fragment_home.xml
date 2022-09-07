@@ -189,6 +189,7 @@
             
             >
             <ImageView
+                android:id="@+id/facebook"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/ic_facebook_home"
@@ -214,6 +215,7 @@
 
             >
             <ImageView
+                android:id="@+id/youtube"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/ic_youtube"
@@ -239,6 +241,7 @@
 
             >
             <ImageView
+                android:id="@+id/instagram"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/ic_instagram_home"
