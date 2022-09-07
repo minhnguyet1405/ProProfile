@@ -39,7 +39,7 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/backgroud_edt"
         android:ems="10"
-        android:hint="Tên tài khoản"
+        android:hint="Họ và tên"
         android:inputType="textEmailAddress"
         android:padding="15dp"
         android:textColor="@color/color_main"
