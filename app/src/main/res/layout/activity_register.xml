@@ -116,31 +116,7 @@
         app:layout_constraintStart_toStartOf="@+id/edt_phone"
         app:layout_constraintTop_toBottomOf="@+id/edt_phone" />
 
-    <EditText
-        android:id="@+id/edt_otp"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/backgroud_edt"
-        android:ems="10"
-        android:hint="Mã xác thực"
-        android:inputType="textPersonName"
-        android:padding="15dp"
-        android:textColor="@color/color_main"
-        app:layout_constraintStart_toStartOf="@+id/edt_email"
-        app:layout_constraintTop_toBottomOf="@+id/edt_email" />
 
-    <Button
-        android:id="@+id/btn_send"
-        android:layout_width="117dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="32dp"
-        android:background="@drawable/boder_button"
-        android:text="Gửi lại"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/edt_otp"
-        app:layout_constraintTop_toTopOf="@+id/edt_otp" />
 
     <Button
         android:id="@+id/btn_signup"
@@ -155,5 +131,5 @@
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_otp" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_email" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.guardianofgods.proprofile;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +13,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,6 +26,8 @@ import java.util.regex.Pattern;
 import javax.annotation.Nullable;
 
 public class RegisterActivity extends AppCompatActivity {
+
+    static boolean isValidate=true;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
@@ -39,8 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
         edtRepass=findViewById(R.id.edt_repassword);
         edtPhone=findViewById(R.id.edt_phone);
         edtEmail=findViewById(R.id.edt_email);
-        edtOTP=findViewById(R.id.edt_otp);
-        btnSend=findViewById(R.id.btn_send);
+
         btnSignup=findViewById(R.id.btn_signup);
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
                 firebaseDatabase =FirebaseDatabase.getInstance();
                 databaseReference=firebaseDatabase.getReference("Users");
 
-                boolean isValidate=true;
+
                 String username=edtName.getText().toString();
                 String password=edtPass.getText().toString();
                 String phone=edtPhone.getText().toString();
@@ -89,25 +94,43 @@ public class RegisterActivity extends AppCompatActivity {
                     isValidate=false;
                 }
 
-                if(isValidate){
 
-
-                    User user=new User(username,password,phone,email);
-                    databaseReference.child(phone).setValue(user,new DatabaseReference.CompletionListener(){
-                        @Override
-                                public void onComplete(@Nullable DatabaseError er, @Nullable DatabaseReference ref){
-                            Toast.makeText(RegisterActivity.this,
-                                    "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                            Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
-                            startActivity(intent);
-                            finish();
-
+                databaseReference.child(phone).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if(task.isSuccessful()){
+                            if(task.getResult().getValue()!=null){
+                                Toast.makeText(RegisterActivity.this,
+                                        "Số điện thoại đã được đăng ký", Toast.LENGTH_SHORT).show();
+                                isValidate=false;
+                            }else {
+                                if(isValidate){
+                                    try {
+                                        User user=new User(username,AESCrypt.encrypt(password),phone,email);
+                                        databaseReference.child(phone).setValue(user,new DatabaseReference.CompletionListener(){
+                                            @Override
+                                            public void onComplete(@Nullable DatabaseError er, @Nullable DatabaseReference ref){
+                                                Toast.makeText(RegisterActivity.this,
+                                                        "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                                                Intent intent=new Intent(RegisterActivity.this,LoginPinCode.class);
+                                                intent.putExtra("NAME",username);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                        });
+                                    } catch (Exception e) {
+                                        Toast.makeText(RegisterActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+                        }else{
+                            Toast.makeText(RegisterActivity.this,"Có lỗi xảy ra",Toast.LENGTH_SHORT).show();
                         }
 
-                    });
+                    }
+                });
 
 
-                }
             }
         });
 

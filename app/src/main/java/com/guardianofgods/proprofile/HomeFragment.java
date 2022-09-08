@@ -99,21 +99,6 @@ public class HomeFragment extends Fragment {
         });
 
 
-
-
-
-
-
-
-//        imageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                requestPermissions();
-//            }
-//        });
-
-
-
         viewPagerAdapterHome=new ViewPagerAdapterHome(this);
         viewPager2.setAdapter(viewPagerAdapterHome);
 
@@ -153,12 +138,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-//        imageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
 
         i_facebook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,31 +161,7 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-//    private void requestPermissions() {
-//        PermissionListener permissionlistener = new PermissionListener() {
-//            @Override
-//            public void onPermissionGranted() {
-//                openImagePicker();
-//
-//            }
-//
-//            @Override
-//            public void onPermissionDenied(List<String> deniedPermissions) {
-//                Toast.makeText(getActivity(), "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
-//            }
-//
-//
-//        };
-//        TedPermission.create()
-//                .setPermissionListener(permissionlistener)
-//                .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
-//                .setPermissions(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
-//                .check();
-//    }
-//
-//    private void openImagePicker() {
-//
-//    }
+
     private void selectImage(){
         Intent intent=new Intent();
         intent.setType("image/*");
@@ -223,8 +178,8 @@ public class HomeFragment extends Fragment {
             imageUri =data.getData();
             imageView.setImageURI(imageUri);
             Toast.makeText(getActivity(),imageUri.toString(),Toast.LENGTH_SHORT).show();
-            imageView.getLayoutParams().height=100;
-            imageView.getLayoutParams().width=100;
+//            imageView.getLayoutParams().height=100;
+//            imageView.getLayoutParams().width=100;
             uploadImage();
 
 
