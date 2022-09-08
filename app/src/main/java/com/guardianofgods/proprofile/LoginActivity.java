@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,8 +21,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import javax.annotation.Nullable;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
@@ -45,28 +49,54 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin=findViewById(R.id.btn_login);
         ic_facebook=findViewById(R.id.icon_facebook);
         ic_instagram=findViewById(R.id.icon_instagram);
+        try {
+            String decrypt= AESCrypt.decrypt("gDzNC/97HsLYVxeya6hRvQ==");
+            Toast.makeText(LoginActivity.this,decrypt,Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 phone=edtPhone.getText().toString();
                 password=edtPassword.getText().toString();
-
                 firebaseDatabase = FirebaseDatabase.getInstance();
                 databaseReference=firebaseDatabase.getReference("Users");
-                databaseReference.child(phone).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DataSnapshot> task) {
-                        if (task.isSuccessful()) {
 
-                            Login(phone,password,task.getResult().child("phone").getValue().toString(), task.getResult().child("password").getValue().toString());
-                        }
-                        else {
-                            Toast.makeText(LoginActivity.this,String.valueOf(task.getResult().getValue()),Toast.LENGTH_SHORT).show();
 
+                if(TextUtils.isEmpty(phone)){
+                    Toast.makeText(LoginActivity.this,"Nhập số điện thoại",Toast.LENGTH_SHORT).show();
+                }else if(TextUtils.isEmpty(password)){
+                    Toast.makeText(LoginActivity.this,"Nhập mật khẩu",Toast.LENGTH_SHORT).show();
+                }else {
+                    databaseReference.child(phone).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                            Toast.makeText(LoginActivity.this,task.getResult().toString(),Toast.LENGTH_SHORT).show();
+                            if (task.isSuccessful()) {
+                                if(task.getResult().getValue()!=null) {
+                                    Login(phone, password, task.getResult().child("phone").getValue().toString(), task.getResult().child("password").getValue().toString());
+                                }else{
+                                    Toast.makeText(LoginActivity.this,"Sai tài khoản hoặc mật khẩu",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else {
+                                Toast.makeText(LoginActivity.this,"Có lỗi xảy ra",Toast.LENGTH_SHORT).show();
+
+                            }
                         }
-                    }
-                });
+                    });
+                }
+
+
+
+
+
+
+
+
+
             }
         });
 
@@ -87,20 +117,25 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void Login(String phone, String password, String phoneFireBase, String passwordFireBase){
-        Toast.makeText(LoginActivity.this,phoneFireBase,Toast.LENGTH_SHORT).show();
-        Toast.makeText(LoginActivity.this,phone,Toast.LENGTH_SHORT).show();
-        if(phoneFireBase.equals(phone) && passwordFireBase.equals(password)){
-            Intent intent=new Intent(LoginActivity.this,MainActivity.class);
-            intent.putExtra("PHONE",phone);
-            intent.putExtra("PASS",password);
-            startActivity(intent);
-            finish();
-            Toast.makeText(LoginActivity.this,"success",Toast.LENGTH_SHORT).show();
 
-        }else {
-            Toast.makeText(LoginActivity.this,"error",Toast.LENGTH_SHORT).show();
+        try {
+            if( phoneFireBase.equals(phone) && AESCrypt.decrypt(passwordFireBase).equals(password)){
+                Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+                intent.putExtra("PHONE",phone);
+                intent.putExtra("PASS",password);
+                startActivity(intent);
+                finish();
+                Toast.makeText(LoginActivity.this,"Đăng nhập thành công",Toast.LENGTH_SHORT).show();
+
+            }else {
+                Toast.makeText(LoginActivity.this,"Sai số điện thoại hoặc mật khẩu",Toast.LENGTH_SHORT).show();
+
+            }
+        }catch (Exception ex){
+            Toast.makeText(LoginActivity.this,ex.getMessage(),Toast.LENGTH_SHORT).show();
 
         }
+
     }
 
     private void openFacebookIntent(String id){

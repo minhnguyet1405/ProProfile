@@ -17,17 +17,17 @@
         android:theme="@style/Theme.ProProfile"
         tools:targetApi="31">
         <activity
+            android:name=".OTPactivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginPinCode"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".ForgetPassword"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
             android:exported="true">
-
 
         </activity>
         <activity
@@ -38,18 +38,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".HomeActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>
