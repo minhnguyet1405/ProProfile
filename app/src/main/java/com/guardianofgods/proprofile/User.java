@@ -1,6 +1,8 @@
 package com.guardianofgods.proprofile;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     String username,password,phone,email;
 
     public User(String username, String password, String phone, String email) {

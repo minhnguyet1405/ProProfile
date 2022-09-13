@@ -25,50 +25,76 @@
         android:textColor="@color/text_color"
         android:textSize="20dp"
         android:textStyle="bold" />
+
     <com.chaos.view.PinView
         android:id="@+id/pinview"
+        style="@style/PinWidget.PinView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/name_pincode"
-        style="@style/PinWidget.PinView"
-        android:layout_marginTop="30dp"
         android:layout_centerInParent="true"
-        android:inputType="text"
+        android:layout_marginTop="30dp"
         android:cursorVisible="true"
-        app:cursorWidth="1dp"
+        android:inputType="text"
         app:cursorColor="@color/color_main"
+        app:cursorWidth="1dp"
         app:hideLineWhenFilled="true"
-        app:lineColor="@color/color_main"
         app:itemCount="6"
+        app:itemHeight="60dp"
         app:itemRadius="5dp"
         app:itemSpacing="18dp"
-        app:itemHeight="60dp"
-        app:lineWidth="1dp"
-        app:viewType="rectangle"
+        app:lineColor="@color/color_main"
 
-        />
+        app:lineWidth="1dp"
+        app:viewType="rectangle" />
+
     <Button
         android:id="@+id/btn_login_pincode"
         android:layout_width="176dp"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/pinview"
+        android:layout_centerInParent="true"
         android:layout_marginTop="30dp"
         android:background="@drawable/boder_button"
         android:text="Xác nhận"
         android:textColor="@color/white"
-        android:textSize="16dp"
-        android:layout_below="@+id/pinview"
-        android:layout_centerInParent="true"/>
+        android:textSize="16dp" />
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_login_pincode"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="22dp"
-        android:text="Quên mã pin?"
-        android:textColor="@color/color_main"
-        android:textSize="16dp"/>
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        >
+
+        <TextView
+            android:id="@+id/textview7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/constraint"
+            app:layout_constraintTop_toTopOf="@+id/constraint"
+            app:layout_constraintBottom_toBottomOf="@+id/constraint"
+            android:text="Chưa nhận được mã?"
+            android:textColor="@color/color_main"
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/textview7"
+            app:layout_constraintTop_toTopOf="@+id/constraint"
+            app:layout_constraintBottom_toBottomOf="@+id/constraint"
+            android:layout_marginStart="0dp"
+            android:layout_toEndOf="@+id/textview7"
+            android:text="Gửi lại"
+            android:textColor="@color/text_color"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
 
 </RelativeLayout>

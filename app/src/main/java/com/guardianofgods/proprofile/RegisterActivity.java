@@ -107,17 +107,11 @@ public class RegisterActivity extends AppCompatActivity {
                                 if(isValidate){
                                     try {
                                         User user=new User(username,AESCrypt.encrypt(password),phone,email);
-                                        databaseReference.child(phone).setValue(user,new DatabaseReference.CompletionListener(){
-                                            @Override
-                                            public void onComplete(@Nullable DatabaseError er, @Nullable DatabaseReference ref){
-                                                Toast.makeText(RegisterActivity.this,
-                                                        "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                                                Intent intent=new Intent(RegisterActivity.this,LoginPinCode.class);
-                                                intent.putExtra("NAME",username);
+                                        Intent intent=new Intent(RegisterActivity.this,LoginPinCode.class);
+                                                intent.putExtra("OBJECT",user);
                                                 startActivity(intent);
                                                 finish();
-                                            }
-                                        });
+
                                     } catch (Exception e) {
                                         Toast.makeText(RegisterActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
                                     }
