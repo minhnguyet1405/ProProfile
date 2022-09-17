@@ -4,12 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,14 +17,10 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import javax.annotation.Nullable;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
@@ -80,14 +74,13 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 if(task.getResult().getValue()!=null) {
                                     if(task.getResult().child("pincode").getValue().toString().equals("null")){
-                                        Intent intent=new Intent(LoginActivity.this,OTPactivity.class);
+                                        Intent intent=new Intent(LoginActivity.this, PinCodeActivity.class);
                                         intent.putExtra("PHONE",phone);
                                         startActivity(intent);
+                                        finish();
                                     }else{
                                         Login(phone, password, task.getResult().child("phone").getValue().toString(), task.getResult().child("password").getValue().toString());
                                     }
-
-
 
                                 }else{
                                     Toast.makeText(LoginActivity.this,"Sai tài khoản hoặc mật khẩu",Toast.LENGTH_SHORT).show();

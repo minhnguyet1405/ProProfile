@@ -64,9 +64,11 @@
         android:layout_height="wrap_content"
         app:helperTextTextColor="@color/color_main"
         app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/color_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_email_login">
+        app:layout_constraintTop_toBottomOf="@+id/title_email_login"
+        >
 
         <EditText
             android:id="@+id/password_login"
@@ -74,7 +76,7 @@
             android:layout_height="50dp"
             android:background="@drawable/backgroud_edt"
             android:hint="Mật khẩu"
-            android:inputType="textPassword"
+            android:inputType="numberPassword"
             android:lines="1"
             android:paddingLeft="20dp" />
 

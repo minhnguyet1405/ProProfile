@@ -1,7 +1,6 @@
 package com.guardianofgods.proprofile;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,11 +13,10 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class OTPactivity extends AppCompatActivity {
+public class PinCodeActivity extends AppCompatActivity {
     Button btnLogin;
     EditText edtPincode,edtConfirm;
     DatabaseReference databaseReference;
@@ -27,7 +25,7 @@ public class OTPactivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_otpactivity);
+        setContentView(R.layout.activity_pincode);
         btnLogin=findViewById(R.id.btn_loginPincode);
         edtPincode=findViewById(R.id.edtEnterpincode);
         edtConfirm=findViewById(R.id.edtConfirm);
@@ -56,15 +54,15 @@ public class OTPactivity extends AppCompatActivity {
                             pincodeDR.setValue(pincode);
 
                             if(pincode.equals(confirm)){
-                                Toast.makeText(OTPactivity.this,"Đăng ký thành công",Toast.LENGTH_SHORT).show();
-                                Intent intent1=new Intent(OTPactivity.this,MainActivity.class);
+                                Toast.makeText(PinCodeActivity.this,"Đăng ký thành công",Toast.LENGTH_SHORT).show();
+                                Intent intent1=new Intent(PinCodeActivity.this,MainActivity.class);
                                 startActivity(intent1);
                             }else {
-                                Toast.makeText(OTPactivity.this,"Mã pin không hợp lệ",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(PinCodeActivity.this,"Mã pin không hợp lệ",Toast.LENGTH_SHORT).show();
                             }
 
                         }else{
-                            Toast.makeText(OTPactivity.this,"Có lỗi xảy ra",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(PinCodeActivity.this,"Có lỗi xảy ra",Toast.LENGTH_SHORT).show();
                         }
 
                     }

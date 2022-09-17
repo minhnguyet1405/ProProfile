@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginPinCode">
+    tools:context=".OTPActivity">
 
     <ImageView
         android:id="@+id/image1"
@@ -44,7 +44,6 @@
         app:itemRadius="5dp"
         app:itemSpacing="18dp"
         app:lineColor="@color/color_main"
-
         app:lineWidth="1dp"
         app:viewType="rectangle" />
 

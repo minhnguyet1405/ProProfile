@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,7 +20,6 @@ import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -31,7 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
-public class LoginPinCode extends AppCompatActivity {
+public class OTPActivity extends AppCompatActivity {
 
     TextView edtname;
     Button btnConfirmOTP;
@@ -47,18 +45,18 @@ public class LoginPinCode extends AppCompatActivity {
         firebaseDatabase =FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference("Users");
 
-        setContentView(R.layout.activity_login_pin_code);
+        setContentView(R.layout.activity_otp);
         edtname=findViewById(R.id.name_pincode);
         pinView=findViewById(R.id.pinview);
         btnConfirmOTP=findViewById(R.id.btn_login_pincode);
 
         Intent intent=getIntent();
         user=(User) intent.getSerializableExtra("OBJECT");
-        Toast.makeText(LoginPinCode.this,user.phone,Toast.LENGTH_SHORT).show();
+        Toast.makeText(OTPActivity.this,user.phone,Toast.LENGTH_SHORT).show();
         edtname.setText("Xin chào, "+user.username);
         mAuth=FirebaseAuth.getInstance();
 
-        Toast.makeText(LoginPinCode.this,GetCountryZipCode(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(OTPActivity.this,GetCountryZipCode(),Toast.LENGTH_SHORT).show();
         VerifyOTP(user.phone);
         String OTP=pinView.getText().toString();
 
@@ -82,13 +80,13 @@ public class LoginPinCode extends AppCompatActivity {
                             @Override
                             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
                                 signInWithPhoneAuthCredential(phoneAuthCredential);
-                                Toast.makeText(LoginPinCode.this,"Đăng ký thành công",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(OTPActivity.this,"Đăng ký thành công",Toast.LENGTH_SHORT).show();
 
                             }
                             // hàm trả về thất bại
                             @Override
                             public void onVerificationFailed(@NonNull FirebaseException e) {
-                                Toast.makeText(LoginPinCode.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                                Toast.makeText(OTPActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
                             }
                             //hàm đọc mã OTP trả về từ firebase
                             @Override
@@ -112,13 +110,13 @@ public class LoginPinCode extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
 
-                            Toast.makeText(LoginPinCode.this,"Đăng ký thành công",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(OTPActivity.this,"Đăng ký thành công",Toast.LENGTH_SHORT).show();
                             databaseReference.child(user.phone).setValue(user,new DatabaseReference.CompletionListener(){
                                 @Override
                                 public void onComplete(@Nullable DatabaseError er, @Nullable DatabaseReference ref){
-                                    Toast.makeText(LoginPinCode.this,
+                                    Toast.makeText(OTPActivity.this,
                                             "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                                    Intent intent=new Intent(LoginPinCode.this,LoginActivity.class);
+                                    Intent intent=new Intent(OTPActivity.this,LoginActivity.class);
                                     //intent.putExtra("NAME",user.username);
                                     startActivity(intent);
                                     finish();
@@ -127,7 +125,7 @@ public class LoginPinCode extends AppCompatActivity {
                             // Update UI
                         } else {
                             // Sign in failed, display a message and update the UI
-                            Toast.makeText(LoginPinCode.this,"Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(OTPActivity.this,"Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 // The verification code entered was invalid
 

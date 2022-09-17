@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginPincodeActivity">
+
+    <ImageView
+        android:id="@+id/avt_image"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/logo_login"
+        android:layout_marginTop="107dp"/>
+
+    <TextView
+        android:id="@+id/name_pincode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Xin chào, Minh Nguyệt"
+        android:textColor="@color/text_color"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/avt_image"
+        app:layout_constraintStart_toStartOf="@+id/avt_image"
+        app:layout_constraintTop_toBottomOf="@+id/avt_image" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInput_pincode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:helperTextTextColor="@color/color_main"
+        app:endIconMode="password_toggle"
+        app:passwordToggleTint="@color/color_main"
+        app:layout_constraintTop_toBottomOf="@+id/name_pincode"
+        app:layout_constraintStart_toStartOf="@+id/name_pincode"
+        app:layout_constraintEnd_toEndOf="@+id/name_pincode">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập mã pin"
+            android:inputType="numberPassword"
+            android:background="@drawable/backgroud_edt"
+            android:layout_marginHorizontal="20dp"
+            android:padding="15dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/login_pincode"
+        android:layout_width="176dp"
+        android:layout_height="wrap_content"
+        android:text="Đăng nhập"
+        android:textSize="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/textInput_pincode"
+        app:layout_constraintStart_toStartOf="@+id/textInput_pincode"
+        app:layout_constraintEnd_toEndOf="@+id/textInput_pincode"
+        android:background="@drawable/boder_button"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quên mã PIN?"
+        app:layout_constraintTop_toBottomOf="@+id/login_pincode"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/color_main"
+        android:textSize="16dp"/>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
