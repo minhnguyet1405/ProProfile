@@ -110,7 +110,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         Intent intent=new Intent(RegisterActivity.this,LoginPinCode.class);
                                                 intent.putExtra("OBJECT",user);
                                                 startActivity(intent);
-                                                finish();
+
 
                                     } catch (Exception e) {
                                         Toast.makeText(RegisterActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
@@ -129,7 +129,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
 
-
-
     }
+
 }

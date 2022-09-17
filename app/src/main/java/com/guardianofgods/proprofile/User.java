@@ -3,13 +3,14 @@ package com.guardianofgods.proprofile;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    String username,password,phone,email;
+    String username,password,phone,email,pincode;
 
     public User(String username, String password, String phone, String email) {
         this.username = username;
         this.password = password;
         this.phone = phone;
         this.email = email;
+        this.pincode = "null";
     }
 
     public User() {
@@ -47,6 +48,14 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public String getPincode() {
+        return pincode;
+    }
+
+    public void setPincode(String pincode) {
+        this.pincode = pincode;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -54,6 +63,7 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
+                ", pincode='" + pincode + '\'' +
                 '}';
     }
 }

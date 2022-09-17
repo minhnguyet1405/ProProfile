@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,7 +31,8 @@ import javax.annotation.Nullable;
 public class LoginActivity extends AppCompatActivity {
     private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
 
-    ImageView back,ic_facebook,ic_instagram;
+    ImageView back;
+    TextView tvSignup, tvForgotPass;
     TextInputLayout til_Name,til_pass;
     EditText edtPhone, edtPassword;
     Button btnLogin;
@@ -47,8 +49,9 @@ public class LoginActivity extends AppCompatActivity {
         edtPhone=findViewById(R.id.phone_login);
         edtPassword=findViewById(R.id.password_login);
         btnLogin=findViewById(R.id.btn_login);
-        ic_facebook=findViewById(R.id.icon_facebook);
-        ic_instagram=findViewById(R.id.icon_instagram);
+        tvSignup=findViewById(R.id.signup);
+        tvForgotPass=findViewById(R.id.forgot_password);
+
         try {
             String decrypt= AESCrypt.decrypt("gDzNC/97HsLYVxeya6hRvQ==");
             Toast.makeText(LoginActivity.this,decrypt,Toast.LENGTH_SHORT).show();
@@ -76,7 +79,16 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this,task.getResult().toString(),Toast.LENGTH_SHORT).show();
                             if (task.isSuccessful()) {
                                 if(task.getResult().getValue()!=null) {
-                                    Login(phone, password, task.getResult().child("phone").getValue().toString(), task.getResult().child("password").getValue().toString());
+                                    if(task.getResult().child("pincode").getValue().toString().equals("null")){
+                                        Intent intent=new Intent(LoginActivity.this,OTPactivity.class);
+                                        intent.putExtra("PHONE",phone);
+                                        startActivity(intent);
+                                    }else{
+                                        Login(phone, password, task.getResult().child("phone").getValue().toString(), task.getResult().child("password").getValue().toString());
+                                    }
+
+
+
                                 }else{
                                     Toast.makeText(LoginActivity.this,"Sai tài khoản hoặc mật khẩu",Toast.LENGTH_SHORT).show();
                                 }
@@ -88,32 +100,18 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     });
                 }
-
-
-
-
-
-
-
-
-
             }
         });
 
-
-        ic_facebook.setOnClickListener(new View.OnClickListener() {
+        tvSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openFacebookIntent("100014907154914");
+                Intent intent=new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivity(intent);
+
             }
         });
 
-        ic_instagram.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openInstagramIntent();
-            }
-        });
     }
 
     private void Login(String phone, String password, String phoneFireBase, String passwordFireBase){
@@ -126,6 +124,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
                 Toast.makeText(LoginActivity.this,"Đăng nhập thành công",Toast.LENGTH_SHORT).show();
+
 
             }else {
                 Toast.makeText(LoginActivity.this,"Sai số điện thoại hoặc mật khẩu",Toast.LENGTH_SHORT).show();
@@ -161,5 +160,8 @@ public class LoginActivity extends AppCompatActivity {
                     Uri.parse("https://www.instagram.com/mnguyet.1405/")));
         }
     }
+
+
+
 
 }
